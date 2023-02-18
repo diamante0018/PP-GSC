@@ -25,7 +25,7 @@
 	{ \
 		CHK_ACTION; \
 	}
-#else /* Valid for Plutinium IW5 with bot warfare */
+#else /* Valid for Plutonium IW5 with bot warfare */
 #define BOT_CHK(ent) \
 	if ( isDefined( ent.pers["isBot"] ) && ent.pers["isBot"] ) \
 	{ \
