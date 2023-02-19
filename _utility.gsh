@@ -25,7 +25,7 @@
 /* IW4x MP has printConsole Built-in. __VA_OPT__ requires C++20 compliant preprocessor */
 /* Do not use the + to concatenate strings, let the GSC VM do it for you */
 /* Other clients will have print avaiable */
-#ifdef IW4MP
+#if defined(IW4MP)
 	#define PRINT(format, ...) printConsole( format __VA_OPT__(,) __VA_ARGS__ )
 #else
 	#define PRINT(format, ...) print( format __VA_OPT__(,) __VA_ARGS__ )
