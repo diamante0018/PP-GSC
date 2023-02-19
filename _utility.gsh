@@ -6,7 +6,7 @@
 * IW4SP: Singleplayer only
 * IW4: Generic
 * Usage with a C++20 (or a later standard) compliant preprocessor is required.
-* /Zc:preprocessor is required with the MSVC compiler it seems.
+* /Zc:preprocessor is required with the MSVC compiler.
 */
 
 #define TRUE 1
@@ -84,7 +84,7 @@
 	{ \
 		CHK_ACTION; \
 	}
-#else /* Valid for Plutonium IW5 with bot warfare */
+#else /* Valid for other clients */
 #define BOT_CHK(ent) \
 	if ( isDefined( ent.pers["isBot"] ) && ent.pers["isBot"] ) \
 	{ \
