@@ -5,7 +5,8 @@
 * IW4MP: Multiplayer only
 * IW4SP: Singleplayer only
 * IW4: Generic
-* Usage with a C++20 (or a later standard) compliant preprocessor is required.
+* TOOL: GSC-Tool mode
+* Usage with a C++20 (or a later standard) compliant preprocessor may be required.
 * /Zc:preprocessor is required with the MSVC compiler.
 */
 
@@ -25,10 +26,12 @@
 /* IW4x MP has printConsole Built-in. __VA_OPT__ requires C++20 compliant preprocessor */
 /* Do not use the + to concatenate strings, let the GSC VM do it for you */
 /* Other clients will have print avaiable */
-#if defined(IW4MP)
-	#define PRINT(format, ...) printConsole( format __VA_OPT__(,) __VA_ARGS__ )
-#else
-	#define PRINT(format, ...) print( format __VA_OPT__(,) __VA_ARGS__ )
+#if !defined(TOOL)
+	#if defined(IW4MP)
+		#define PRINT(format, ...) printConsole( format __VA_OPT__(,) __VA_ARGS__ )
+	#else
+		#define PRINT(format, ...) print( format __VA_OPT__(,) __VA_ARGS__ )
+	#endif
 #endif
 
 /* Use Cbuf. Should use the + to concatenate strings prior to using this */
@@ -71,7 +74,9 @@
 #define WAIT_END(ent, msg) ent waittillmatch( msg, "end" )
 
 /* defined in common_scripts\utility */
-#define WAIT_ANY_RET(ent, ...) ent waittill_any_return( __VA_ARGS__ )
+#if !defined(TOOL)
+	#define WAIT_ANY_RET(ent, ...) ent waittill_any_return( __VA_ARGS__ )
+#endif
 
 #define PLAYER_NOTIFY_CMD(ent, str, action) ent notifyOnPlayerCommand( str, action )
 
