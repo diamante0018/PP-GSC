@@ -23,6 +23,17 @@
 		thread onPlayerConnect(); \
 	}
 
+/* Captures a "connected" event. Perform your action(s) using the "player" variable */
+#define _ON_PLAYER_CNCT_BEGIN onPlayerConnect() \
+	{ \
+		while ( true ) \
+		{ \
+			level waittill( "connected", player );
+
+#define _ON_PLAYER_CNCT_END \
+		} \
+	}
+
 /* IW4x MP has printConsole Built-in. __VA_OPT__ requires C++20 compliant preprocessor */
 /* Do not use the + to concatenate strings, let the GSC VM do it for you */
 /* Other clients will have print avaiable */
@@ -85,7 +96,7 @@
 
 #if defined(IW4MP) || defined(IW5x)
 #define BOT_CHK(ent) \
-	if ( ent isBot() ) \
+	if ( ent isTestClient() ) \
 	{ \
 		CHK_ACTION; \
 	}
