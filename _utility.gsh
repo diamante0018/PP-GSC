@@ -10,6 +10,11 @@
 * /Zc:preprocessor is required with the MSVC compiler.
 */
 
+#ifdef IW4
+	#define IW4MP
+	#define IW4SP
+#endif
+
 #define TRUE 1
 #define FALSE 0
 
