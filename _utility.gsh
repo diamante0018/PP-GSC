@@ -58,9 +58,7 @@
 	#error CBUF_ADD_TEXT is not defined
 #endif
 
-#if defined(IW4MP)
-	#define FLOAT(num) castFloat( num )
-#elif defined(IW4SP) || defined(IW5) || defined(IW5x) || defined(IW6x) || defined(S1x)
+#if defined(IW4MP) || defined(IW4SP) || defined(IW5) || defined(IW5x) || defined(IW6x) || defined(S1x)
 	#define FLOAT(num) float( num )
 #else
 	#define FLOAT(num) getDvarFloat( TEMP_DVAR, 0.0 )
