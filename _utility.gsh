@@ -11,8 +11,12 @@
 */
 
 #ifdef IW4
-	#define IW4MP
-	#define IW4SP
+	#ifndef IW4MP
+		#define IW4MP
+	#endif
+	#ifndef IW4SP
+		#define IW4SP
+	#endif
 #endif
 
 #define TRUE 1
