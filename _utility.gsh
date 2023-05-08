@@ -1,10 +1,10 @@
 /* Meaning of some macros:
-* IW5: Plutonium
 * T4: Plutonium
-* IW5x: Reserved
 * IW4MP: Multiplayer only
 * IW4SP: Singleplayer only
 * IW4: Generic
+* IW5x: Reserved
+* IW5: Plutonium
 * TOOL: GSC-Tool mode
 * Usage with a C++20 (or a later standard) compliant preprocessor may be required.
 * /Zc:preprocessor is required with the MSVC compiler.
@@ -101,7 +101,7 @@
 /* Tweak as necessary. Can be return, continue or break  */
 #define CHK_ACTION continue
 
-#if defined(IW4MP) || defined(IW5x)
+#if defined(IW4MP) || defined(IW5x) || defined(IW5)
 #define BOT_CHK(ent) \
 	if ( ent isTestClient() ) \
 	{ \
