@@ -75,7 +75,7 @@
 
 #if defined(IW4MP)
 	#define NOCLIP(ent) ent noclip()
-#else /* All clients should have it */
+#else /* All clients should have it. But require the following */
 	#define NOCLIP(ent) \
 		setDvar( "sv_cheats", 1 ); \
 		ent noclip(); \
