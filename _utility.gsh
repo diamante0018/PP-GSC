@@ -73,18 +73,22 @@
 	#define FLOAT(num) getDvarFloat( TEMP_DVAR, 0.0 )
 #endif
 
-/* defined in common_scripts\iw4x_utility */
 #if defined(IW4MP)
-	#define NOCLIP(ent) noclip( ent )
-#else /* All clients should have it */
 	#define NOCLIP(ent) ent noclip()
+#else /* All clients should have it */
+	#define NOCLIP(ent) \
+		setDvar( "sv_cheats", 1 ); \
+		ent noclip(); \
+		setDvar( "sv_cheats", 0 );
 #endif
 
-/* defined in common_scripts\iw4x_utility */
 #if defined(IW4MP)
-	#define UFO(ent) ufo( ent )
-#else /* All clients should have it */
 	#define UFO(ent) ent ufo()
+#else /* All clients should have it. But require the following */
+	#define UFO(ent) \
+		setDvar( "sv_cheats", 1 ); \
+		ent ufo(); \
+		setDvar( "sv_cheats", 0 );
 #endif
 
 #define WAIT_CNT(ent) level waittill ( "connected", ent )
