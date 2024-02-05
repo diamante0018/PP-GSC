@@ -45,7 +45,7 @@
 
 /* IW4x MP has printConsole Built-in. __VA_OPT__ requires C++20 compliant preprocessor */
 /* Do not use the + to concatenate strings, let the GSC VM do it for you */
-/* Other clients will have print avaiable */
+/* Other clients will have print available */
 #if !defined(TOOL)
 	#if defined(IW4MP)
 		#define PRINT(format, ...) printConsole( format __VA_OPT__(,) __VA_ARGS__ )
@@ -54,7 +54,7 @@
 	#endif
 #endif
 
-/* Use Cbuf. Should use the + to concatenate strings prior to using this */
+/* Use Cbuf. Should use the + to concatenate strings before using this */
 #if defined(IW5) || defined(IW5x) || defined(T4)
 	#define CBUF_ADD_TEXT(format) cmdExec( format )
 #elif defined(IW6x) || defined(S1x)
@@ -75,7 +75,7 @@
 
 #if defined(IW4MP)
 	#define NOCLIP(ent) ent noclip()
-#else /* All clients should have it. But require the following */
+#else /* All clients should have it but require the following */
 	#define NOCLIP(ent) \
 		setDvar( "sv_cheats", 1 ); \
 		ent noclip(); \
@@ -84,7 +84,7 @@
 
 #if defined(IW4MP)
 	#define UFO(ent) ent ufo()
-#else /* All clients should have it. But require the following */
+#else /* All clients should have it but require the following */
 	#define UFO(ent) \
 		setDvar( "sv_cheats", 1 ); \
 		ent ufo(); \
