@@ -32,6 +32,10 @@
 		thread onPlayerConnect(); \
 	}
 
+#define GENERIC_COROUTINE_END \
+	level endon( "game_ended" ); \
+	self endon( "disconnect" );
+
 /* Captures a "connected" event. Perform your action(s) using the "player" variable */
 #define _ON_PLAYER_CNCT_BEGIN onPlayerConnect() \
 	{ \
