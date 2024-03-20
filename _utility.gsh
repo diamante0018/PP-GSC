@@ -50,12 +50,26 @@
 /* IW4x MP has printConsole Built-in. __VA_OPT__ requires C++20 compliant preprocessor */
 /* Do not use the + to concatenate strings, let the GSC VM do it for you */
 /* Other clients will have print available */
+#if defined(IW4MP)
+	#define PRINT_FUNC printConsole
+#else
+	#define PRINT_FUNC print
+#endif
+
 #if !defined(TOOL)
-	#if defined(IW4MP)
-		#define PRINT(format, ...) printConsole( format __VA_OPT__(,) __VA_ARGS__ )
-	#else
-		#define PRINT(format, ...) print( format __VA_OPT__(,) __VA_ARGS__ )
-	#endif
+	PRINT_FUNC( format __VA_OPT__(,) __VA_ARGS__ )
+#endif
+
+#ifdef _UTILITY_DEBUG
+#define _VERIFY( cond, msg ) \
+	assertEx(cond, msg)
+
+#define DEBUG_PRINT(msg) \
+	PRINT_FUNC(msg)
+#else
+/* The following are "empty" defines with gsc-tool  */
+#define _VERIFY(cond, msg)
+#define DEBUG_PRINT(msg)
 #endif
 
 /* Use Cbuf. Should use the + to concatenate strings before using this */
@@ -115,12 +129,14 @@
 #define BOT_CHK(ent) \
 	if ( ent isTestClient() ) \
 	{ \
+		DEBUG_PRINT( ent.name + " is a bot\n" ); \
 		CHK_ACTION; \
 	}
-#else /* Valid for other clients */
+#else /* Valid for other clients. You should wait some frames to allow Bot Warfare to set these values */
 #define BOT_CHK(ent) \
 	if ( isDefined( ent.pers["isBot"] ) && ent.pers["isBot"] ) \
 	{ \
+		DEBUG_PRINT( ent.name + " is a bot\n" ); \
 		CHK_ACTION; \
 	}
 #endif
