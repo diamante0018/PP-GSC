@@ -56,16 +56,12 @@
 	#define PRINT_FUNC print
 #endif
 
-#if !defined(TOOL)
-	PRINT_FUNC( format __VA_OPT__(,) __VA_ARGS__ )
-#endif
-
 #ifdef _UTILITY_DEBUG
-#define _VERIFY( cond, msg ) \
-	assertEx(cond, msg)
+#define _VERIFY(cond, msg) \
+	assertEx( cond, msg )
 
 #define DEBUG_PRINT(msg) \
-	PRINT_FUNC(msg)
+	PRINT_FUNC( msg )
 #else
 /* The following are "empty" defines with gsc-tool  */
 #define _VERIFY(cond, msg)
