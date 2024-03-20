@@ -57,15 +57,15 @@
 #endif
 
 #ifdef _UTILITY_DEBUG
-#define _VERIFY(cond, msg) \
-	assertEx( cond, msg )
+	#define _VERIFY(cond, msg) \
+		assertEx( cond, msg )
 
-#define DEBUG_PRINT(msg) \
-	PRINT_FUNC( msg )
+	#define DEBUG_PRINT(msg) \
+		PRINT_FUNC( msg )
 #else
-/* The following are "empty" defines with gsc-tool  */
-#define _VERIFY(cond, msg)
-#define DEBUG_PRINT(msg)
+	/* The following are "empty" defines with gsc-tool  */
+	#define _VERIFY(cond, msg)
+	#define DEBUG_PRINT(msg)
 #endif
 
 /* Use Cbuf. Should use the + to concatenate strings before using this */
@@ -115,7 +115,7 @@
 #endif
 
 #if !defined(TOOL)
-#define PLAYER_NOTIFY_CMD(ent, str, action) ent notifyOnPlayerCommand( str, action )
+	#define PLAYER_NOTIFY_CMD(ent, str, action) ent notifyOnPlayerCommand( str, action )
 #endif
 
 /* Tweak as necessary. Can be return, continue or break  */
