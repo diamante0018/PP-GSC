@@ -1,5 +1,7 @@
 /* Meaning of some macros:
-* T4: Plutonium
+* T4: Plutonium - Generic
+* T4MP: Plutonium - Multiplayer only
+* T4SP: Plutonium - Singleplayer only
 * IW4MP: Multiplayer only
 * IW4SP: Singleplayer only
 * IW4: Generic
@@ -25,6 +27,12 @@
 #define ZERO_VEC3 ( 0, 0, 0 )
 
 #define TEMP_DVAR "temp_dvar_util"
+
+#if defined(T4SP)
+	#define CLIENT_FIELD_NAME playername
+#else
+	#define CLIENT_FIELD_NAME name
+#endif
 
 #define GENERIC_INIT \
 	init() \
@@ -125,14 +133,14 @@
 #define BOT_CHK(ent) \
 	if ( ent isTestClient() ) \
 	{ \
-		DEBUG_PRINT( ent.name + " is a bot\n" ); \
+		DEBUG_PRINT( ent.CLIENT_FIELD_NAME + " is a bot\n" ); \
 		CHK_ACTION; \
 	}
 #else /* Valid for other clients. You should wait some frames to allow Bot Warfare to set these values */
 #define BOT_CHK(ent) \
 	if ( isDefined( ent.pers["isBot"] ) && ent.pers["isBot"] ) \
 	{ \
-		DEBUG_PRINT( ent.name + " is a bot\n" ); \
+		DEBUG_PRINT( ent.CLIENT_FIELD_NAME + " is a bot\n" ); \
 		CHK_ACTION; \
 	}
 #endif
