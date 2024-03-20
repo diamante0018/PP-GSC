@@ -100,12 +100,14 @@
 	#define WAIT_ANY_RET(ent, ...) ent waittill_any_return( __VA_ARGS__ )
 #endif
 
+#if !defined(TOOL)
 #define PLAYER_NOTIFY_CMD(ent, str, action) ent notifyOnPlayerCommand( str, action )
+#endif
 
 /* Tweak as necessary. Can be return, continue or break  */
 #define CHK_ACTION continue
 
-#if defined(IW4MP) || defined(IW5x) || defined(IW5)
+#if (defined(IW4MP) || defined(IW5x) || defined(IW5)) && !defined(TOOL)
 #define BOT_CHK(ent) \
 	if ( ent isTestClient() ) \
 	{ \
